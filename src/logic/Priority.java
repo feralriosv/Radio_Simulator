@@ -14,4 +14,17 @@ public enum Priority {
     Priority(int level) {
         this.level = level;
     }
+
+    public int getLevel() {
+        return level;
+    }
+
+    public static Priority fromLevel(int level) {
+        for (Priority p : Priority.values()) {
+            if (p.level == level) {
+                return p;
+            }
+        }
+        return null;
+    }
 }
