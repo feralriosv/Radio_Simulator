@@ -41,10 +41,6 @@ public class Song {
         return remainingTime;
     }
 
-    protected void setRemainingTime(int remainingTime) {
-        this.remainingTime = remainingTime;
-    }
-
     protected void play(int time) {
         remainingTime -= time;
         playing = true;

@@ -12,7 +12,7 @@ public class Moderator {
     }
 
     public void addToPlaylist(Song newSong) {
-        playlist.add(newSong);
+        playlist.addSong(newSong);
     }
 
     public String removeFromPlaylist(int identifier) {

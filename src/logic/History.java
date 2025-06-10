@@ -1,14 +1,14 @@
 package logic;
 
-public class History {
-    private Song[] played;
-    private int capacity;
-    private int totalPlayed;
+public class History extends SongCollection {
 
     public History() {
-        capacity = 3;
-        played = new Song[capacity];
-        totalPlayed = 0;
     }
 
+    @Override
+    public void addSong(Song song) {
+        expandIfNecessary();
+        songs[totalSongs] = song;
+        totalSongs++;
+    }
 }
