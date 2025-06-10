@@ -19,7 +19,6 @@ public class UserInterface {
         while (running) {
             String line = scanner.nextLine();
             commandHandler.processCommand(line);
-            running = false;
         }
     }
 }

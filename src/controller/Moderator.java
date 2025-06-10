@@ -23,6 +23,10 @@ public class Moderator {
         return null;
     }
 
+    public void reproducePlaylist(int playTime) {
+        playlist.playFor(playTime);
+    }
+
     public Song parseSong(String songArgument) {
         String[] songFeatures = extractSongFeatures(songArgument);
         int identifier = Integer.parseInt(songFeatures[0]);

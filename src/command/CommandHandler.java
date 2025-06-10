@@ -49,8 +49,8 @@ public class CommandHandler {
     }
 
     private void processPlay(String line) {
-        String argument = extractArgument(line);
-
+        int seconds = Integer.parseInt(extractArgument(line));
+        moderator.reproducePlaylist(seconds);
     }
 
     private void processNext(String line) {

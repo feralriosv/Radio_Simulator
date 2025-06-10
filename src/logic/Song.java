@@ -29,11 +29,24 @@ public class Song {
         playing = false;
     }
 
-    public int priorityValue() {
+    protected int priorityValue() {
         return priority.getLevel();
     }
 
-    public int getIdentifier() {
+    protected int getIdentifier() {
         return identifier;
+    }
+
+    protected int getRemainingTime() {
+        return remainingTime;
+    }
+
+    protected void setRemainingTime(int remainingTime) {
+        this.remainingTime = remainingTime;
+    }
+
+    protected void play(int time) {
+        remainingTime -= time;
+        playing = true;
     }
 }
