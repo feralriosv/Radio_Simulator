@@ -7,6 +7,7 @@ import userinterface.UserInterface;
 public class CommandHandler {
     private UserInterface userInterface;
     private Moderator moderator;
+    private String commandResult = null;
 
     public CommandHandler(UserInterface userInterface) {
         this.userInterface = userInterface;
@@ -36,23 +37,24 @@ public class CommandHandler {
     }
 
     private void processAdd(String line) {
-        String songArgument = extractSongArgument(line);
+        String songArgument = extractArgument(line);
         Song newSong = moderator.parseSong(songArgument);
         moderator.addToPlaylist(newSong);
     }
 
     private void processRemove(String line) {
-        String songArgument = extractSongArgument(line);
+        int identifier = Integer.parseInt(extractArgument(line));
+        commandResult = moderator.removeFromPlaylist(identifier);
 
     }
 
     private void processPlay(String line) {
-        String argument = extractSongArgument(line);
+        String argument = extractArgument(line);
 
     }
 
     private void processNext(String line) {
-        String argument = extractSongArgument(line);
+        String argument = extractArgument(line);
 
     }
 
@@ -75,7 +77,7 @@ public class CommandHandler {
 
     }
 
-    private String extractSongArgument(String line) {
+    private String extractArgument(String line) {
         return line.split(" ")[1];
     }
 }

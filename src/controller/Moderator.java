@@ -12,7 +12,15 @@ public class Moderator {
     }
 
     public void addToPlaylist(Song newSong) {
+        playlist.add(newSong);
+    }
 
+    public String removeFromPlaylist(int identifier) {
+        int songsRemoved = playlist.deleteByID(identifier);
+        if (songsRemoved != 0) {
+            return String.format("Removed %d songs.", songsRemoved);
+        }
+        return null;
     }
 
     public Song parseSong(String songArgument) {

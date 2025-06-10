@@ -28,4 +28,12 @@ public class Song {
         remainingTime = duration;
         playing = false;
     }
+
+    public int priorityValue() {
+        return priority.getLevel();
+    }
+
+    public int getIdentifier() {
+        return identifier;
+    }
 }
