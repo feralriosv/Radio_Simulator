@@ -1,13 +1,16 @@
 package command;
 
+import controller.Moderator;
+import logic.Song;
 import userinterface.UserInterface;
 
 public class CommandHandler {
-
     private UserInterface userInterface;
+    private Moderator moderator;
 
     public CommandHandler(UserInterface userInterface) {
         this.userInterface = userInterface;
+        moderator = new Moderator();
     }
     public void processCommand(String line) {
         CommandKey command = extractCommandKey(line);
@@ -33,18 +36,23 @@ public class CommandHandler {
     }
 
     private void processAdd(String line) {
-
+        String songArgument = extractSongArgument(line);
+        Song newSong = moderator.parseSong(songArgument);
+        moderator.addToPlaylist(newSong);
     }
 
     private void processRemove(String line) {
+        String songArgument = extractSongArgument(line);
 
     }
 
     private void processPlay(String line) {
+        String argument = extractSongArgument(line);
 
     }
 
     private void processNext(String line) {
+        String argument = extractSongArgument(line);
 
     }
 
@@ -65,5 +73,9 @@ public class CommandHandler {
 
     private void processQuit() {
 
+    }
+
+    private String extractSongArgument(String line) {
+        return line.split(" ")[1];
     }
 }
