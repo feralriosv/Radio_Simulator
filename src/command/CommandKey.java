@@ -11,4 +11,12 @@ public enum CommandKey {
     HISTORY_COMMAND,
     QUIT_COMMAND;
 
+    public static CommandKey fromLine(String commandLine) {
+        for (CommandKey commandKey : CommandKey.values()) {
+            if (commandKey.toString().toLowerCase().equals(commandLine)) {
+                return commandKey;
+            }
+        }
+        return null;
+    }
 }
