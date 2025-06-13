@@ -17,15 +17,32 @@ public class Moderator {
 
     public String removeFromPlaylist(int identifier) {
         int songsRemoved = playlist.deleteByID(identifier);
-        if (songsRemoved != 0) {
-            return String.format("Removed %d songs.", songsRemoved);
-        }
-        return null;
+        return (songsRemoved != 0)
+                ? String.format("Removed %d songs.", songsRemoved)
+                : null;
     }
 
     public void reproducePlaylist(int playTime) {
         playlist.playFor(playTime);
     }
+
+    public String peekHeadSong() {
+        Song headSong = playlist.getHeadSong();
+        return (headSong != null)
+                ? headSong + ":" + headSong.getRemainingTime()
+                : null;
+    }
+
+    public String listPlaylist() {
+        return (playlist.isNotEmpty())
+                ? playlist.toString()
+                : null;
+    }
+
+    public void insertNextSong(Song nextSong) {
+        playlist.setNextSong(nextSong);
+    }
+
 
     public Song parseSong(String songArgument) {
         String[] songFeatures = extractSongFeatures(songArgument);
