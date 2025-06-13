@@ -9,17 +9,18 @@ public class Playlist extends SongCollection {
 
     @Override
     public void addSong(Song newSong) {
-        int index = size();
+        expandIfNecessary();
+        int index = amountSongs();
         while (index > 0 && newSong.priorityValue() < songAt(index - 1).priorityValue()) {
             setSongAt(index, songAt(index - 1));
             index--;
         }
-        addToCollection(newSong);
+        addToCollection(newSong, index);
     }
 
     public int deleteByID(int identifier) {
         int songsRemoved = 0;
-        for (int songIndex = 0; songIndex < size(); songIndex++) {
+        for (int songIndex = 0; songIndex < amountSongs(); songIndex++) {
             if (songAt(songIndex).getIdentifier() == identifier) {
                 removeAt(songIndex);
                 songsRemoved++;
@@ -30,8 +31,8 @@ public class Playlist extends SongCollection {
 
     public void playFor(int time) {
         int playTime = time;
-        while (!isEmpty() && playTime > 0) {
-            Song played = songAt(0);
+        while (0 < amountSongs() && 0 < playTime) {
+            Song played = getHeadSong();
             if (played.getRemainingTime() <= playTime) {
                 playTime -= played.getRemainingTime();
                 history.addSong(played);
@@ -43,7 +44,17 @@ public class Playlist extends SongCollection {
         }
     }
 
+    public void setNextSong(Song nextSong) {
+
+    }
+
+    public Song getHeadSong() {
+        return songAt(0);
+    }
+
     private void removeHeadSong() {
-        removeAt(0);
+        if (amountSongs() > 0) {
+            removeAt(0);
+        }
     }
 }
