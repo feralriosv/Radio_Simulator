@@ -25,40 +25,35 @@ public abstract class SongCollection {
         return content.toString();
     }
 
-    public boolean isEmpty() {
-        return totalSongs == 0;
-    }
-
-    public void addToCollection(Song newSong) {
-        expandIfNecessary();
-        songs[totalSongs] = newSong;
+    protected void addToCollection(Song newSong, int atIndex) {
+        songs[atIndex] = newSong;
         totalSongs++;
     }
 
-    public int size() {
+    protected int amountSongs() {
         return totalSongs;
     }
 
-    public Song songAt(int index) {
-        if (0 <= index && index <= totalSongs) {
+    protected Song songAt(int index) {
+        if (0 <= index && index < totalSongs) {
             return songs[index];
         }
         return null;
     }
 
-    public void setSongAt(int index, Song song) {
+    protected void setSongAt(int index, Song song) {
         this.songs[index] = song;
     }
 
-    public void removeAt(int songIndex) {
-        for (int i = songIndex; i < totalSongs; i++) {
+    protected void removeAt(int songIndex) {
+        for (int i = songIndex; i < totalSongs - 1; i++) {
             setSongAt(i, songs[i + 1]);
         }
-        totalSongs--;
         songs[totalSongs - 1] = null;
+        totalSongs--;
     }
 
-    private void expandIfNecessary() {
+    protected void expandIfNecessary() {
         if (capacity == totalSongs) {
             int newCapacity = songs.length * 2;
             Song[] newSongs = new Song[newCapacity];
@@ -66,5 +61,9 @@ public abstract class SongCollection {
             songs = newSongs;
             capacity = newCapacity;
         }
+    }
+
+    public boolean isNotEmpty() {
+        return totalSongs > 0;
     }
 }
