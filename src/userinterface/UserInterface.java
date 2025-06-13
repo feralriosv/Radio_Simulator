@@ -24,6 +24,8 @@ public class UserInterface {
             if (output != null) {
                 printMessage(output);
             }
+
+            commandHandler.setCommandResult(null);
         }
     }
 
