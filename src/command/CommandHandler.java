@@ -16,15 +16,15 @@ public class CommandHandler {
     public void processCommand(String line) {
         CommandKey command = extractCommandKey(line);
         switch (command) {
-            case ADD_COMMAND -> processAdd(line);
-            case REMOVE_COMMAND -> processRemove(line);
-            case PLAY_COMMAND -> processPlay(line);
-            case NEXT_COMMAND -> processNext(line);
-            case SKIP_COMMAND -> processSkip();
-            case PEEK_COMMAND -> processPeek();
-            case LIST_COMMAND -> processList();
-            case HISTORY_COMMAND -> processHistory();
-            case QUIT_COMMAND -> processQuit();
+            case ADD -> processAdd(line);
+            case REMOVE -> processRemove(line);
+            case PLAY -> processPlay(line);
+            case NEXT -> processNext(line);
+            case SKIP -> processSkip();
+            case PEEK -> processPeek();
+            case LIST -> processList();
+            case HISTORY -> processHistory();
+            case QUIT -> processQuit();
             default -> {
                 // No command
             }
