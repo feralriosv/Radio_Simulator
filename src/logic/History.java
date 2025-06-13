@@ -8,7 +8,6 @@ public class History extends SongCollection {
     @Override
     public void addSong(Song song) {
         expandIfNecessary();
-        songs[totalSongs] = song;
-        totalSongs++;
+        addToCollection(song);
     }
 }
