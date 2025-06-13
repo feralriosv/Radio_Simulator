@@ -5,8 +5,8 @@ import logic.Song;
 import userinterface.UserInterface;
 
 public class CommandHandler {
-    private UserInterface userInterface;
-    private Moderator moderator;
+    private final UserInterface userInterface;
+    private final Moderator moderator;
     private String commandResult = null;
 
     public CommandHandler(UserInterface userInterface) {
@@ -45,7 +45,6 @@ public class CommandHandler {
     private void processRemove(String line) {
         int identifier = Integer.parseInt(extractArgument(line));
         commandResult = moderator.removeFromPlaylist(identifier);
-
     }
 
     private void processPlay(String line) {
