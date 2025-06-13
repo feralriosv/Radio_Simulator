@@ -34,7 +34,7 @@ public class Moderator {
         String title = songFeatures[2];
         int duration = Integer.parseInt(songFeatures[3]);
         if (songFeatures.length > 4) {
-            int priorityLevel = Integer.parseInt(songFeatures[5]);
+            int priorityLevel = Integer.parseInt(songFeatures[4]);
             Priority songPriority = Priority.fromLevel(priorityLevel);
             return new Song(identifier, artist, title, duration, songPriority);
         }
