@@ -55,8 +55,9 @@ public abstract class SongCollection {
     public void removeAt(int songIndex) {
         for (int i = songIndex; i < totalSongs; i++) {
             setSongAt(i, songs[i + 1]);
-            totalSongs--;
         }
+        totalSongs--;
+        songs[totalSongs - 1] = null;
     }
 
     private void expandIfNecessary() {

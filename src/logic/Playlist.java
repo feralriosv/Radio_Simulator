@@ -7,56 +7,43 @@ public class Playlist extends SongCollection {
         history = new History();
     }
 
+    @Override
     public void addSong(Song newSong) {
-        expandIfNecessary();
-        int index = totalSongs;
-        while (index > 0 && newSong.priorityValue() < songs[index - 1].priorityValue()) {
-            songs[index] = songs[index - 1];
+        int index = size();
+        while (index > 0 && newSong.priorityValue() < songAt(index - 1).priorityValue()) {
+            setSongAt(index, songAt(index - 1));
             index--;
         }
-        songs[index] = newSong;
-        totalSongs++;
+        addToCollection(newSong);
     }
 
     public int deleteByID(int identifier) {
-        int originalTotal = totalSongs;
-        int notRemoved = 0;
-        for (int index = 0; index < originalTotal; index++) {
-            if (songs[index].getIdentifier() != identifier) {
-                songs[notRemoved++] = songs[index];
+        int songsRemoved = 0;
+        for (int songIndex = 0; songIndex < size(); songIndex++) {
+            if (songAt(songIndex).getIdentifier() == identifier) {
+                removeAt(songIndex);
+                songsRemoved++;
             }
         }
-
-        for (int index = notRemoved; index < originalTotal; index++) {
-            songs[index] = null;
-        }
-        totalSongs = notRemoved;
-        return originalTotal - notRemoved;
+        return songsRemoved;
     }
 
     public void playFor(int time) {
         int playTime = time;
         while (!isEmpty() && playTime > 0) {
-            Song current = songs[0];
-            if (current.getRemainingTime() <= playTime) {
-                playTime -= current.getRemainingTime();
-                history.addSong(current);
-                removeFirstSong();
+            Song played = songAt(0);
+            if (played.getRemainingTime() <= playTime) {
+                playTime -= played.getRemainingTime();
+                history.addSong(played);
+                removeHeadSong();
             } else {
-                current.play(playTime);
+                played.play(playTime);
                 playTime = 0;
             }
         }
     }
 
-    private void removeFirstSong() {
-        if (totalSongs == 0) {
-            return;
-        }
-        for (int i = 0; i < totalSongs - 1; i++) {
-            songs[i] = songs[i + 1];
-        }
-        songs[totalSongs - 1] = null;
-        totalSongs--;
+    private void removeHeadSong() {
+        removeAt(0);
     }
 }
