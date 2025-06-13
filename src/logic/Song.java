@@ -45,8 +45,12 @@ public class Song {
     }
 
     protected void play(int time) {
-        remainingTime -= time;
+        remainingTime = Math.max(0, remainingTime - time);
         playing = true;
+    }
+
+    protected boolean hasFinished() {
+        return getRemainingTime() == 0;
     }
 
     protected boolean isPlaying() {

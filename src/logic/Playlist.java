@@ -38,14 +38,15 @@ public class Playlist extends SongCollection {
     public void playFor(int time) {
         int playTime = time;
         while (isNotEmpty() && playTime > 0) {
-            Song songToPlay = getHeadSong();
-            if (songToPlay.getRemainingTime() <= playTime) {
-                playTime -= songToPlay.getRemainingTime();
-                history.addSong(songToPlay);
+            Song current = getHeadSong();
+            int timeToPlay = Math.min(playTime, current.getRemainingTime());
+
+            current.play(timeToPlay);
+            playTime -= timeToPlay;
+
+            if (current.hasFinished()) {
+                history.addSong(current);
                 removeHeadSong();
-            } else {
-                songToPlay.play(playTime);
-                playTime = 0;
             }
         }
     }
