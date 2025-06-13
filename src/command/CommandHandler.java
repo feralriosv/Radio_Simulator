@@ -55,7 +55,8 @@ public class CommandHandler {
 
     private void processNext(String line) {
         String argument = extractArgument(line);
-
+        Song nextSong = moderator.parseSong(argument);
+        moderator.insertNextSong(nextSong);
     }
 
     private void processSkip() {

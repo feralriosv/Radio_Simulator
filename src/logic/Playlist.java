@@ -45,7 +45,12 @@ public class Playlist extends SongCollection {
     }
 
     public void setNextSong(Song nextSong) {
-
+        expandIfNecessary();
+        if (headSongIsPlaying()) {
+            shiftAndSetNext(nextSong, 1);
+        } else {
+            shiftAndSetNext(nextSong, 0);
+        }
     }
 
     public Song getHeadSong() {
@@ -56,5 +61,16 @@ public class Playlist extends SongCollection {
         if (amountSongs() > 0) {
             removeAt(0);
         }
+    }
+
+    private void shiftAndSetNext(Song nextSong, int shiftAt) {
+        for (int i = shiftAt; i < amountSongs(); i++) {
+            setSongAt(i, songAt(i + 1));
+        }
+        addToCollection(nextSong, shiftAt);
+    }
+
+    private boolean headSongIsPlaying() {
+        return getHeadSong() != null && getHeadSong().isPlaying();
     }
 }
