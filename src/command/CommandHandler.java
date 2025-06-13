@@ -74,7 +74,11 @@ public class CommandHandler {
     }
 
     private void processQuit() {
+        userInterface.setRunning(false);
+    }
 
+    public String getCommandResult() {
+        return commandResult;
     }
 
     private String extractArgument(String line) {

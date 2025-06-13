@@ -19,6 +19,19 @@ public class UserInterface {
         while (running) {
             String line = scanner.nextLine();
             commandHandler.processCommand(line);
+
+            String output = commandHandler.getCommandResult();
+            if (output != null) {
+                printMessage(output);
+            }
         }
+    }
+
+    public void setRunning(boolean running) {
+        this.running = running;
+    }
+
+    private void printMessage(String message) {
+        System.out.println(message);
     }
 }
