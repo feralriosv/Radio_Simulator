@@ -74,8 +74,8 @@ public class Playlist extends SongCollection {
     }
 
     private void shiftAndSetNext(Song nextSong, int shiftAt) {
-        for (int i = shiftAt; i < amountSongs(); i++) {
-            setSongAt(i, songAt(i + 1));
+        for (int songIndex = amountSongs(); shiftAt < songIndex; songIndex--) {
+            setSongAt(songIndex, songAt(songIndex - 1));
         }
         addToCollection(nextSong, shiftAt);
     }
