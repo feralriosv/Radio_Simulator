@@ -2,7 +2,7 @@ package logic;
 
 public class Playlist extends SongCollection {
     private static final int HEAD_SONG_INDEX = 0;
-    private static final int AFTER_HEAD_SONG_INDEX = 0;
+    private static final int AFTER_HEAD_SONG_INDEX = 1;
 
     private final History history;
 
@@ -38,13 +38,13 @@ public class Playlist extends SongCollection {
     public void playFor(int time) {
         int playTime = time;
         while (isNotEmpty() && playTime > 0) {
-            Song played = getHeadSong();
-            if (played.getRemainingTime() <= playTime) {
-                playTime -= played.getRemainingTime();
-                history.addSong(played);
+            Song songToPlay = getHeadSong();
+            if (songToPlay.getRemainingTime() <= playTime) {
+                playTime -= songToPlay.getRemainingTime();
+                history.addSong(songToPlay);
                 removeHeadSong();
             } else {
-                played.play(playTime);
+                songToPlay.play(playTime);
                 playTime = 0;
             }
         }
