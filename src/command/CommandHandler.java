@@ -4,6 +4,11 @@ import controller.Moderator;
 import logic.Song;
 import userinterface.UserInterface;
 
+/**
+ * Handles the user commands and processes the inputs.
+ *
+ * @author Fernando Rios
+ */
 public class CommandHandler {
     private static final String SEPARATOR = " ";
     private static final int COMMAND_INDEX = 0;
@@ -13,10 +18,19 @@ public class CommandHandler {
     private final Moderator moderator;
     private String commandResult = null;
 
+    /**
+     * Constructs a CommandHandler with a reference to the UserInterface.
+     * @param userInterface The UserInterface reference that will retrieve the inputs.
+     */
     public CommandHandler(UserInterface userInterface) {
         this.userInterface = userInterface;
         moderator = new Moderator();
     }
+
+    /**
+     * Processes the given command and executes the corresponding action.
+     * @param line The command line input introduced by the user.
+     */
     public void processCommand(String line) {
         CommandKey command = extractCommandKey(line);
         switch (command) {
@@ -35,9 +49,25 @@ public class CommandHandler {
         }
     }
 
+    /**
+     * Extracts the command key from a given input line.
+     *
+     * @param line the full input line containing a command and its parameters
+     * @return the {@code CommandKey} corresponding to the command part of the line
+     */
     private CommandKey extractCommandKey(String line) {
         String commandPart = line.split(SEPARATOR)[COMMAND_INDEX];
         return CommandKey.fromLine(commandPart);
+    }
+
+    /**
+     * Extracts the argument part from the given input line.
+     *
+     * @param line the input line containing the command and its argument
+     * @return the string representing the extracted argument
+     */
+    private String extractArgument(String line) {
+        return line.split(SEPARATOR)[ARGUMENT_INDEX];
     }
 
     private void processAdd(String line) {
@@ -88,9 +118,5 @@ public class CommandHandler {
 
     public void setCommandResult(String commandResult) {
         this.commandResult = commandResult;
-    }
-
-    private String extractArgument(String line) {
-        return line.split(SEPARATOR)[ARGUMENT_INDEX];
     }
 }
