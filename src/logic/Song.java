@@ -45,4 +45,9 @@ public class Song {
         remainingTime -= time;
         playing = true;
     }
+
+    @Override
+    public String toString() {
+        return String.format("%05d", identifier) + ":" + artist + ":" + title + ":" + duration;
+    }
 }
