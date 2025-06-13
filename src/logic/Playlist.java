@@ -20,10 +20,13 @@ public class Playlist extends SongCollection {
 
     public int deleteByID(int identifier) {
         int songsRemoved = 0;
-        for (int songIndex = 0; songIndex < amountSongs(); songIndex++) {
+        int songIndex = 0;
+        while (songIndex < amountSongs()) {
             if (songAt(songIndex).getIdentifier() == identifier) {
-                removeAt(songIndex);
+                removeSongAt(songIndex);
                 songsRemoved++;
+            } else {
+                songIndex++;
             }
         }
         return songsRemoved;
@@ -59,7 +62,7 @@ public class Playlist extends SongCollection {
 
     public void removeHeadSong() {
         if (amountSongs() > 0) {
-            removeAt(0);
+            removeSongAt(0);
         }
     }
 
