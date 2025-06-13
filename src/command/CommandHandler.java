@@ -5,6 +5,10 @@ import logic.Song;
 import userinterface.UserInterface;
 
 public class CommandHandler {
+    private static final String SEPARATOR = " ";
+    private static final int COMMAND_INDEX = 0;
+    private static final int ARGUMENT_INDEX = 1;
+
     private final UserInterface userInterface;
     private final Moderator moderator;
     private String commandResult = null;
@@ -32,7 +36,7 @@ public class CommandHandler {
     }
 
     private CommandKey extractCommandKey(String line) {
-        String commandPart = line.split(" ")[0];
+        String commandPart = line.split(SEPARATOR)[COMMAND_INDEX];
         return CommandKey.fromLine(commandPart);
     }
 
@@ -87,6 +91,6 @@ public class CommandHandler {
     }
 
     private String extractArgument(String line) {
-        return line.split(" ")[1];
+        return line.split(SEPARATOR)[ARGUMENT_INDEX];
     }
 }

@@ -1,14 +1,19 @@
 package logic;
 
 public abstract class SongCollection {
+    private static final int DEFAULT_COLLECTION_CAPACITY = 6;
+    private static final int LAST_INDEX_OFFSET = 1;
+    private static final int NO_SONG_STORED = 0;
+    private static final int INITIAL_INDEX = 0;
+
     private Song[] songs;
     private int capacity;
     private int totalSongs;
 
     public SongCollection() {
-        this.capacity = 6;
+        this.capacity = DEFAULT_COLLECTION_CAPACITY;
         songs = new Song[capacity];
-        totalSongs = 0;
+        totalSongs = NO_SONG_STORED;
     }
 
     public abstract void addSong(Song newSong);
@@ -16,9 +21,9 @@ public abstract class SongCollection {
     @Override
     public String toString() {
         StringBuilder content = new StringBuilder();
-        for (int index = 0; index < totalSongs; index++) {
+        for (int index = INITIAL_INDEX; index < totalSongs; index++) {
             content.append(songs[index]);
-            if (index < totalSongs - 1) {
+            if (index < totalSongs - LAST_INDEX_OFFSET) {
                 content.append(System.lineSeparator());
             }
         }
@@ -35,7 +40,7 @@ public abstract class SongCollection {
     }
 
     protected Song songAt(int index) {
-        if (0 <= index && index < totalSongs) {
+        if (INITIAL_INDEX <= index && index < totalSongs) {
             return songs[index];
         }
         return null;
@@ -46,10 +51,10 @@ public abstract class SongCollection {
     }
 
     protected void removeSongAt(int songIndex) {
-        for (int i = songIndex; i < totalSongs - 1; i++) {
-            setSongAt(i, songs[i + 1]);
+        for (int i = songIndex; i < totalSongs - LAST_INDEX_OFFSET; i++) {
+            setSongAt(i, songs[i + LAST_INDEX_OFFSET]);
         }
-        songs[totalSongs - 1] = null;
+        songs[totalSongs - LAST_INDEX_OFFSET] = null;
         totalSongs--;
     }
 
@@ -57,13 +62,13 @@ public abstract class SongCollection {
         if (capacity == totalSongs) {
             int newCapacity = songs.length * 2;
             Song[] newSongs = new Song[newCapacity];
-            System.arraycopy(songs, 0, newSongs, 0, newSongs.length);
+            System.arraycopy(songs, INITIAL_INDEX, newSongs, INITIAL_INDEX, newSongs.length);
             songs = newSongs;
             capacity = newCapacity;
         }
     }
 
     public boolean isNotEmpty() {
-        return totalSongs > 0;
+        return totalSongs > NO_SONG_STORED;
     }
 }

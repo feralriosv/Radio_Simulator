@@ -1,6 +1,9 @@
 package logic;
 
 public class Playlist extends SongCollection {
+    private static final int HEAD_SONG_INDEX = 0;
+    private static final int AFTER_HEAD_SONG_INDEX = 0;
+
     private final History history;
 
     public Playlist() {
@@ -10,12 +13,12 @@ public class Playlist extends SongCollection {
     @Override
     public void addSong(Song newSong) {
         expandIfNecessary();
-        int index = amountSongs();
-        while (index > 0 && newSong.priorityValue() < songAt(index - 1).priorityValue()) {
-            setSongAt(index, songAt(index - 1));
-            index--;
+        int songIndex = amountSongs();
+        while (songIndex > 0 && newSong.priorityValue() < songAt(songIndex - 1).priorityValue()) {
+            setSongAt(songIndex, songAt(songIndex - 1));
+            songIndex--;
         }
-        addToCollection(newSong, index);
+        addToCollection(newSong, songIndex);
     }
 
     public int deleteById(int identifier) {
@@ -34,7 +37,7 @@ public class Playlist extends SongCollection {
 
     public void playFor(int time) {
         int playTime = time;
-        while (0 < amountSongs() && 0 < playTime) {
+        while (isNotEmpty() && playTime > 0) {
             Song played = getHeadSong();
             if (played.getRemainingTime() <= playTime) {
                 playTime -= played.getRemainingTime();
@@ -50,19 +53,19 @@ public class Playlist extends SongCollection {
     public void setNextSong(Song nextSong) {
         expandIfNecessary();
         if (headSongIsPlaying()) {
-            shiftAndSetNext(nextSong, 1);
+            shiftAndSetNext(nextSong, AFTER_HEAD_SONG_INDEX);
         } else {
-            shiftAndSetNext(nextSong, 0);
+            shiftAndSetNext(nextSong, HEAD_SONG_INDEX);
         }
     }
 
     public Song getHeadSong() {
-        return songAt(0);
+        return songAt(HEAD_SONG_INDEX);
     }
 
     public void removeHeadSong() {
-        if (amountSongs() > 0) {
-            removeSongAt(0);
+        if (isNotEmpty()) {
+            removeSongAt(HEAD_SONG_INDEX);
         }
     }
 
