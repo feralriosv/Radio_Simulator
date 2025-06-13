@@ -1,5 +1,6 @@
 package controller;
 
+import logic.History;
 import logic.Playlist;
 import logic.Priority;
 import logic.Song;
@@ -47,6 +48,12 @@ public class Moderator {
         playlist.removeHeadSong();
     }
 
+    public String listPlaylistHistory() {
+        History playlistHistory = playlist.getHistory();
+        return (playlistHistory.isNotEmpty())
+                ? playlistHistory.toString()
+                : null;
+    }
 
     public Song parseSong(String songArgument) {
         String[] songFeatures = extractSongFeatures(songArgument);

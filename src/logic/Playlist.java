@@ -63,6 +63,10 @@ public class Playlist extends SongCollection {
         }
     }
 
+    public History getHistory() {
+        return history;
+    }
+
     private void shiftAndSetNext(Song nextSong, int shiftAt) {
         for (int i = shiftAt; i < amountSongs(); i++) {
             setSongAt(i, songAt(i + 1));

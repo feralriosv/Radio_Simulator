@@ -72,7 +72,7 @@ public class CommandHandler {
     }
 
     private void processHistory() {
-
+        commandResult = moderator.listPlaylistHistory();
     }
 
     private void processQuit() {
