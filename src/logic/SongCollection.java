@@ -45,7 +45,7 @@ public abstract class SongCollection {
         this.songs[index] = song;
     }
 
-    protected void removeAt(int songIndex) {
+    protected void removeSongAt(int songIndex) {
         for (int i = songIndex; i < totalSongs - 1; i++) {
             setSongAt(i, songs[i + 1]);
         }

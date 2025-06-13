@@ -18,7 +18,7 @@ public class Playlist extends SongCollection {
         addToCollection(newSong, index);
     }
 
-    public int deleteByID(int identifier) {
+    public int deleteById(int identifier) {
         int songsRemoved = 0;
         int songIndex = 0;
         while (songIndex < amountSongs()) {
