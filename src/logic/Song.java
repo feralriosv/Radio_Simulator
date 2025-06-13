@@ -1,7 +1,7 @@
 package logic;
 
 public class Song {
-    private int identifier;
+    private final int identifier;
     private final String artist;
     private final String title;
     private final int duration;
@@ -37,7 +37,7 @@ public class Song {
         return identifier;
     }
 
-    protected int getRemainingTime() {
+    public int getRemainingTime() {
         return remainingTime;
     }
 
