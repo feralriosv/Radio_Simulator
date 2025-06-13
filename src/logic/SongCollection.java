@@ -3,7 +3,7 @@ package logic;
 public abstract class SongCollection {
     private Song[] songs;
     private int capacity;
-    protected int totalSongs;
+    private int totalSongs;
 
     public SongCollection() {
         this.capacity = 6;
