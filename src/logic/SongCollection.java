@@ -15,16 +15,14 @@ public abstract class SongCollection {
 
     @Override
     public String toString() {
-        if (isEmpty()) return null;
-        StringBuilder sb = new StringBuilder();
+        StringBuilder content = new StringBuilder();
         for (int index = 0; index < totalSongs; index++) {
-            if (index != totalSongs - 1) {
-                sb.append(songs[index]).append("\n");
-            } else {
-                sb.append(songs[index]);
+            content.append(songs[index]);
+            if (index < totalSongs - 1) {
+                content.append(System.lineSeparator());
             }
         }
-        return sb.toString();
+        return content.toString();
     }
 
     public boolean isEmpty() {
