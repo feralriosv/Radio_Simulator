@@ -61,12 +61,13 @@ public class CommandHandler {
     private void processSkip() {
 
     }
-    private void processPeek() {
 
+    private void processPeek() {
+        commandResult = moderator.peekHeadSong();
     }
 
     private void processList() {
-
+        commandResult = moderator.listPlaylist();
     }
 
     private void processHistory() {
@@ -79,6 +80,10 @@ public class CommandHandler {
 
     public String getCommandResult() {
         return commandResult;
+    }
+
+    public void setCommandResult(String commandResult) {
+        this.commandResult = commandResult;
     }
 
     private String extractArgument(String line) {
