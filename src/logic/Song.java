@@ -46,6 +46,10 @@ public class Song {
         playing = true;
     }
 
+    protected boolean isPlaying() {
+        return playing;
+    }
+
     @Override
     public String toString() {
         return String.format("%05d", identifier) + ":" + artist + ":" + title + ":" + duration;
