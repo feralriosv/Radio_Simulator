@@ -19,9 +19,9 @@ public enum Priority {
     }
 
     public static Priority fromLevel(int level) {
-        for (Priority p : Priority.values()) {
-            if (p.level == level) {
-                return p;
+        for (Priority priority : Priority.values()) {
+            if (priority.level == level) {
+                return priority;
             }
         }
         return null;
