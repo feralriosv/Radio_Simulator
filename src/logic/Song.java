@@ -1,6 +1,9 @@
 package logic;
 
 public class Song {
+    private static final String DELIMITER = ":";
+    private static final String ID_FORMAT = "%05d";
+
     private final int identifier;
     private final String artist;
     private final String title;
@@ -52,6 +55,6 @@ public class Song {
 
     @Override
     public String toString() {
-        return String.format("%05d", identifier) + ":" + artist + ":" + title + ":" + duration;
+        return String.format(ID_FORMAT, identifier) + DELIMITER + artist + DELIMITER + title + DELIMITER + duration;
     }
 }
