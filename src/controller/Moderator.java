@@ -43,6 +43,10 @@ public class Moderator {
         playlist.setNextSong(nextSong);
     }
 
+    public void skipNextSong() {
+        playlist.removeHeadSong();
+    }
+
 
     public Song parseSong(String songArgument) {
         String[] songFeatures = extractSongFeatures(songArgument);

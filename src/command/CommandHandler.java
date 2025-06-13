@@ -60,7 +60,7 @@ public class CommandHandler {
     }
 
     private void processSkip() {
-
+        moderator.skipNextSong();
     }
 
     private void processPeek() {

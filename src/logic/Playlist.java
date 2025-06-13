@@ -57,7 +57,7 @@ public class Playlist extends SongCollection {
         return songAt(0);
     }
 
-    private void removeHeadSong() {
+    public void removeHeadSong() {
         if (amountSongs() > 0) {
             removeAt(0);
         }
