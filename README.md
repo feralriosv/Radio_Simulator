@@ -1,6 +1,3 @@
-You can find my report during coding progress in my Notion page:
-
-https://www.notion.so/Radio-Project-20ef25dbe27f80718a55ce0d4e57c027?source=copy_link
 
 PROJECT EXAMPLE INTERACTION:
 
